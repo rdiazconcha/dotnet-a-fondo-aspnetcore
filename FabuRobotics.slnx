@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/FabuRobotics.Api/FabuRobotics.Api.csproj" />
+  <Project Path="src/FabuRobotics.WebApp/FabuRobotics.WebApp.csproj" />
+</Solution>
