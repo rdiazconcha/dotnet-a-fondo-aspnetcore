@@ -17,7 +17,7 @@ az identity federated-credential create -g $RG --identity-name id-dotnetafondoas
 az role assignment create --assignee-object-id $principalId --assignee-principal-type ServicePrincipal `
   --role "Website Contributor" --scope (az group show -n $RG --query id -o tsv)
 
-# En el repositorio del curso:
+## Ejecutar en el repositorio del curso:
 
 gh secret set AZURE_CLIENT_ID --body $clientId
 
