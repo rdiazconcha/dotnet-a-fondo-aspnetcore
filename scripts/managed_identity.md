@@ -17,10 +17,11 @@ az identity federated-credential create -g $RG --identity-name id-dotnetafondoas
 az role assignment create --assignee-object-id $principalId --assignee-principal-type ServicePrincipal `
   --role "Website Contributor" --scope (az group show -n $RG --query id -o tsv)
 
-## Ejecutar en el repositorio del curso:
+## Ejecutar en el repositorio del curso (o crear desde el portal de GitHub)
 
 gh secret set AZURE_CLIENT_ID --body $clientId
-
 gh secret set AZURE_TENANT_ID --body (az account show --query tenantId -o tsv)
-
 gh secret set AZURE_SUBSCRIPTION_ID --body (az account show --query id -o tsv)
+
+gh variable set WEBAPP_RESOURCE_NAME --body "faburobotics-webapp"
+gh variable set API_RESOURCE_NAME --body "faburobotics-api"
