@@ -1,4 +1,4 @@
-#PowerShell
+# PowerShell
 
 $RG = "dotnet-a-fondo-aspnetcore"
 $prefix = gh api repos/rdiazconcha/dotnet-a-fondo-aspnetcore/actions/oidc/customization/sub --jq .sub_claim_prefix
