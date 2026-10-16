@@ -12,6 +12,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.Use(async (context, next) =>
+{
+    context.Response.Headers["X-FabuRobotics-Api"] = "1.0";
+    await next(context);
+});
 
 app.MapGet("/catalog", (CatalogService catalogService) =>
 {
