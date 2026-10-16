@@ -1,6 +1,6 @@
 @FabuRobotics.Api_HostAddress = http://localhost:5028
 
-GET {{FabuRobotics.Api_HostAddress}}/weatherforecast/
+GET {{FabuRobotics.Api_HostAddress}}/catalog/
 Accept: application/json
 
 ###
