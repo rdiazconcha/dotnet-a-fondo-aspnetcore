@@ -3,6 +3,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.AddSingleton<CatalogService>();
 
+
+var apiKey = builder.Configuration.GetValue<string>("OPENAI_API_KEY");
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
