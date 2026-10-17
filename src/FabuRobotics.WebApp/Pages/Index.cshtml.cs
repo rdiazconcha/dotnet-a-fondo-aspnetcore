@@ -5,6 +5,10 @@ namespace FabuRobotics.WebApp.Pages;
 
 public class IndexModel : PageModel
 {
+    public IndexModel(IConfiguration configuration)
+    {
+        var connString = configuration.GetValue<string>("FabuRobotics:AppInsights");
+    }
     public void OnGet()
     {
 
