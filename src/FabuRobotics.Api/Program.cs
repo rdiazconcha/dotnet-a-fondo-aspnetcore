@@ -1,7 +1,11 @@
+using FabuRobotics.Api.Models;
+using FabuRobotics.Api.Services;
+using Microsoft.AspNetCore.Http.HttpResults;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
-builder.Services.AddSingleton<CatalogService>();
+builder.Services.AddSingleton<RobotService>();
 
 
 var apiKey = builder.Configuration.GetValue<string>("OPENAI_API_KEY");
@@ -21,25 +25,13 @@ app.Use(async (context, next) =>
     await next(context);
 });
 
-app.MapGet("/catalog", (CatalogService catalogService) =>
-{
-    var items = catalogService.GetAll();
-    return items;
-})
-.WithName("GetCatalog");
+app.MapGet("/robots", (RobotService robotService) => robotService.GetAll())
+    .WithName("GetRobots");
+
+app.MapGet("/robots/{code}", Results<Ok<Robot>, NotFound> (string code, RobotService robotService) =>
+    robotService.GetByCode(code) is { } robot
+        ? TypedResults.Ok(robot)
+        : TypedResults.NotFound())
+    .WithName("GetRobotByCode");
 
 app.Run();
-
-class CatalogService
-{
-    public IEnumerable<Robot> GetAll()
-    {
-        return [
-            new("FB-01", "Asistente doméstico", "Hogar", 11_999m),
-            new("FB-02", "Asistente de hospitalidad", "Servicio", 12_999m),
-            new("FB-03", "Asistente híbrido", "Hogar y servicio", 10_999m)
-        ];
-    }
-}
-
-record Robot(string Code, string Name, string Segment, decimal Price);

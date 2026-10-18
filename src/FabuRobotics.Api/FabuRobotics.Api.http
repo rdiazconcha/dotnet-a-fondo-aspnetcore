@@ -1,6 +1,15 @@
 @FabuRobotics.Api_HostAddress = http://localhost:5028
 
-GET {{FabuRobotics.Api_HostAddress}}/catalog/
+GET {{FabuRobotics.Api_HostAddress}}/robots/
+Accept: application/json
+
+###
+
+GET {{FabuRobotics.Api_HostAddress}}/robots/FB-01
+Accept: application/json
+
+###
+GET {{FabuRobotics.Api_HostAddress}}/robots/NOEXISTE
 Accept: application/json
 
 ###
