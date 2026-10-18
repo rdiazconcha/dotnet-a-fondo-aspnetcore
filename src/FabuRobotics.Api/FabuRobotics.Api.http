@@ -13,3 +13,15 @@ GET {{FabuRobotics.Api_HostAddress}}/robots/NOEXISTE
 Accept: application/json
 
 ###
+
+GET {{FabuRobotics.Api_HostAddress}}/accessories
+Accept: application/json
+
+###
+
+GET {{FabuRobotics.Api_HostAddress}}/accessories/FR-ENE-001
+Accept: application/json
+
+###
+GET {{FabuRobotics.Api_HostAddress}}/accessories/NOEXISTE
+Accept: application/json

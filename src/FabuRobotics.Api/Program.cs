@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 builder.Services.AddSingleton<RobotService>();
+builder.Services.AddSingleton<AccessoryService>();
 
 
 var apiKey = builder.Configuration.GetValue<string>("OPENAI_API_KEY");
@@ -33,5 +34,15 @@ app.MapGet("/robots/{code}", Results<Ok<Robot>, NotFound> (string code, RobotSer
         ? TypedResults.Ok(robot)
         : TypedResults.NotFound())
     .WithName("GetRobotByCode");
+
+app.MapGet("/accessories", (AccessoryService catalogService) => catalogService.GetAll())
+    .WithName("GetAccessories");
+
+app.MapGet("/accessories/{sku}", Results<Ok<Accessory>, NotFound> (string sku, AccessoryService catalogService) =>
+    catalogService.GetBySku(sku) is { } accessory
+        ? TypedResults.Ok(accessory)
+        : TypedResults.NotFound())
+    .WithName("GetAccessoryBySku");
+
 
 app.Run();
