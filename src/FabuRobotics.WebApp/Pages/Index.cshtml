@@ -1,10 +1,52 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="hero text-center">
+    <h1 class="display-4 fw-bold">Convertimos ideas audaces en máquinas brillantes</h1>
+    <p class="lead">
+        FabuRobotics diseña y fabrica robots asistentes para el hogar, la hospitalidad y la oficina.
+    </p>
+    <a class="btn btn-primary btn-lg" href="#robots">Conoce nuestros robots</a>
+</section>
+
+<section id="robots" class="py-4">
+    <h2 class="mb-4">Nuestros robots</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">FB-01 <span class="badge bg-secondary">Hogar</span></h5>
+                    <p class="card-text">
+                        Asistente doméstico diseñado para ser amigable, útil y entrañable.
+                    </p>
+                </div>
+                <div class="card-footer fw-bold">11,999 USD</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">FB-02 <span class="badge bg-secondary">Servicio</span></h5>
+                    <p class="card-text">
+                        Asistente inteligente para hospitalidad y atención al cliente.
+                    </p>
+                </div>
+                <div class="card-footer fw-bold">12,999 USD</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">FB-03 <span class="badge bg-secondary">Hogar y servicio</span></h5>
+                    <p class="card-text">
+                        Combina la calidez del FB-01 con la inteligencia del FB-02.
+                    </p>
+                </div>
+                <div class="card-footer fw-bold">Desde 10,999 USD</div>
+            </div>
+        </div>
+    </div>
+</section>
