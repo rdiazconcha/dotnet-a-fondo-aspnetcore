@@ -1,4 +1,55 @@
 ﻿@page
 @model FabuRobotics.WebApp.Pages.Accessories.IndexModel
+@using FabuRobotics.WebApp.Models
 @{
+    ViewData["Title"] = "Catálogo de accesorios";
+}
+
+<h1>Catálogo de accesorios</h1>
+<p class="lead">Accesorios, software y servicios para tu robot FabuRobotics.</p>
+
+@if (Model.ErrorMessage is not null)
+{
+    <div class="alert alert-danger" role="alert">@Model.ErrorMessage</div>
+}
+
+<table class="table table-hover align-middle">
+    <thead class="table-light">
+        <tr>
+            <th>SKU</th>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Compatible con</th>
+            <th class="text-end">Precio</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var accessory in Model.Accessories)
+        {
+            <tr>
+                <td><code>@accessory.Sku</code></td>
+                <td>
+                    <div class="fw-semibold">@accessory.Name</div>
+                    <small class="text-muted">@accessory.Description</small>
+                </td>
+                <td>@accessory.Category</td>
+                <td>
+                    @foreach (var robot in accessory.Compatibility)
+                    {
+                        <span class="badge bg-secondary">@robot</span>
+                    }
+                </td>
+                <td class="text-end text-nowrap">@FormatPrice(accessory)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@functions {
+    private static string FormatPrice(Accessory accessory) => accessory.BillingPeriod switch
+    {
+        "mensual" => $"{accessory.PriceUsd:N2} USD / mes",
+        "anual" => $"{accessory.PriceUsd:N2} USD / año",
+        _ => $"{accessory.PriceUsd:N2} USD"
+    };
 }

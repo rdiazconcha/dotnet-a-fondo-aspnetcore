@@ -1,12 +1,23 @@
-using Microsoft.AspNetCore.Mvc;
+using FabuRobotics.WebApp.Models;
+using FabuRobotics.WebApp.Services;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace FabuRobotics.WebApp.Pages.Accessories
+namespace FabuRobotics.WebApp.Pages.Accessories;
+
+public class IndexModel(ApiService apiService) : PageModel
 {
-    public class IndexModel : PageModel
+	public IReadOnlyList<Accessory> Accessories { get; private set; } = [];
+    public string? ErrorMessage { get; private set; }
+
+    public async Task OnGetAsync()
     {
-        public void OnGet()
-        {
-        }
+		try
+		{
+			Accessories = await apiService.GetAccesories();
+		}
+		catch (Exception)
+		{
+			ErrorMessage = "Hubo un error al traer la información del API";
+		}
     }
 }
