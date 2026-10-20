@@ -1,9 +1,12 @@
+using Azure.Monitor.OpenTelemetry.AspNetCore;
 using FabuRobotics.WebApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddOpenTelemetry()
+                .UseAzureMonitor();
 builder.Services.AddHttpClient<ApiService>(client =>
 {
     var apiBaseUrl = builder.Configuration.GetValue<string>("FabuRobotics:ApiBaseUrl")

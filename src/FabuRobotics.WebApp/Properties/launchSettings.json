@@ -16,7 +16,8 @@
       "launchBrowser": true,
       "applicationUrl": "https://localhost:7196;http://localhost:5145",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "APPLICATIONINSIGHTS_CONNECTION_STRING": "InstrumentationKey=e55a04ea-fb13-4425-ab01-e6a0acfbd2b4;IngestionEndpoint=https://westus-0.in.applicationinsights.azure.com/;LiveEndpoint=https://westus.livediagnostics.monitor.azure.com/;ApplicationId=0f93dc47-d71f-40fe-8e96-d4669d633346"
       }
     }
   }
